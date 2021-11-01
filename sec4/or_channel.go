@@ -41,6 +41,7 @@ func main() {
 	sig := func(after time.Duration) <-chan interface{} {
 		c := make(chan interface{})
 		go func() {
+			// defer fmt.Println("End")
 			defer close(c)
 			time.Sleep(after)
 		}()
@@ -56,4 +57,5 @@ func main() {
 		sig(1*time.Minute),
 	)
 	fmt.Printf("done after %v", time.Since(start))
+
 }
